@@ -1,10 +1,6 @@
 package ru.topaztree.topaztree.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import liquibase.repackaged.net.sf.jsqlparser.expression.JsonAggregateFunction;
-import liquibase.repackaged.net.sf.jsqlparser.expression.JsonExpression;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
