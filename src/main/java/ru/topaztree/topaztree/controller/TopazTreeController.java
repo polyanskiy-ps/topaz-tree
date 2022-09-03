@@ -14,8 +14,7 @@ public class TopazTreeController {
 
     @PostMapping("/topaz_tree")
     public int saveTree(@RequestBody TopazTreeDto topazTreeDto) {
-        TopazTreeEntity topazTreeEntity = topazTreeService.saveInDataBase(topazTreeDto);
-        return topazTreeService.calculateWeightOfTree(topazTreeDto);
+        return topazTreeService.saveInDataBase(topazTreeDto).getTreeWeight();
     }
 
 }
