@@ -7,25 +7,26 @@ import ru.topaztree.topaztree.entity.TopazTreeEntity;
 import ru.topaztree.topaztree.repository.TopazTreeRepository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
 public class TopazTreeService {
     final private TopazTreeRepository topazTreeRepository;
+    public int calculateWeightOfTree (TopazTreeDto topazTreeDto) {
+        int weight = 0;
 
-    public int calculateWeightOfChildren(TopazTreeDto topazTreeDto) {
-        int childrenWeight = 0;
-        if (topazTreeDto.getChildren() != null) {
-            for (TopazTreeDto tree : topazTreeDto.getChildren()) {
-                childrenWeight += tree.getWeight() + calculateWeightOfChildren(tree);
+        ArrayList<TopazTreeDto> trees = new ArrayList<>();
+        trees.add(topazTreeDto);
+        int i = 0;
 
+        while (trees.size() > i) {
+            weight += trees.get(i).getWeight();
+            if (trees.get(i).getChildren() != null) {
+                trees.addAll(trees.get(i).getChildren());
             }
+            i++;
         }
-        return childrenWeight;
-    }
-    public int calculateWeightOfTree(TopazTreeDto topazTreeDto) {
-        int weight;
-        weight = topazTreeDto.getWeight() + calculateWeightOfChildren(topazTreeDto);
         return weight;
     }
 
